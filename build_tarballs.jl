@@ -2,6 +2,9 @@
 # `julia build_tarballs.jl --help` to see a usage message.
 using BinaryBuilder
 
+name = "x264Builder"
+version = v"2018.02.12-pre-noyasm"
+
 # Collection of sources required to build x264Builder
 sources = [
     "https://download.videolan.org/x264/snapshots/x264-snapshot-20180212-2245-stable.tar.bz2" =>
@@ -48,5 +51,5 @@ dependencies = [
 ]
 
 # Build the tarballs, and possibly a `build.jl` as well.
-build_tarballs(ARGS, "x264Builder", sources, script, platforms, products, dependencies)
+build_tarballs(ARGS, name, version, sources, script, platforms, products, dependencies)
 
