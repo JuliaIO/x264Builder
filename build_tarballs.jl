@@ -16,7 +16,7 @@ sources = [
 script = raw"""
 cd $WORKSPACE/srcdir
 cd x264-snapshot-20190525-2245-stable/
-./configure --prefix=$prefix --host=$target --enable-shared --disable-cli --disable-asm
+./configure --prefix=$prefix --host=$target --enable-shared --disable-cli
 make -j${nproc}
 make install
 
