@@ -21,12 +21,6 @@ env:
   - BINARYBUILDER_USE_CCACHE=true
 sudo: required
 before_script:
-- wget "http://www.nasm.us/pub/nasm/releasebuilds/2.14.02/nasm-2.14.02.tar.xz"
-- tar xf nasm-2.14.02.tar.xz
-- cd nasm-2.14.02
-- ./configure --prefix=/usr && make
-- sudo make install
-- cd ..
 - julia -e 'using Pkg; pkg"add BinaryProvider"; pkg"add BinaryBuilder#master"; Pkg.build()'
 script:
 - julia build_tarballs.jl
