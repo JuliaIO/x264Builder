@@ -3,19 +3,19 @@
 using BinaryBuilder
 
 name = "x264Builder"
-version = v"2018.02.12-pre-noyasm"
+version = v"2019.05.25-pre-noyasm"
 
 # Collection of sources required to build x264Builder
 sources = [
-    "https://download.videolan.org/x264/snapshots/x264-snapshot-20180212-2245-stable.tar.bz2" =>
-    "fa1069c4a6ec442687e33b118572c9dd893e82ebe2f10bbe21dc51996060a3cc",
+    "https://download.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-20190525-2245-stable.tar.bz2" =>
+    "638581a18bff8e9375211955422eff145011c8ccfd0994d43bd194cd82984f7a",
 
 ]
 
 # Bash recipe for building across all platforms
 script = raw"""
 cd $WORKSPACE/srcdir
-cd x264-snapshot-20180212-2245-stable/
+cd x264-snapshot-20190525-2245-stable/
 ./configure --prefix=$prefix --host=$target --enable-shared --disable-cli --disable-asm
 make -j${nproc}
 make install
