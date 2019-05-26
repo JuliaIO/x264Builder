@@ -9,8 +9,8 @@ notifications:
 git:
   depth: 99999999
 before_install:
-- wget http://www.nasm.us/pub/nasm/releasebuilds/2.14.02/nasm-2.14.02.tar.xz
-- tar -xf nasm-2.14.02.tar.xz
+- wget "http://www.nasm.us/pub/nasm/releasebuilds/2.14.02/nasm-2.14.02.tar.xz"
+- tar xf nasm-2.14.02.tar.xz
 - ./configure --prefix=/usr && make
 - sudo make install
 cache:
