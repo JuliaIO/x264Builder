@@ -11,6 +11,7 @@ git:
 before_install:
 - wget "http://www.nasm.us/pub/nasm/releasebuilds/2.14.02/nasm-2.14.02.tar.xz"
 - tar xf nasm-2.14.02.tar.xz
+- cd nasm-2.14.02
 - ./configure --prefix=/usr && make
 - sudo make install
 cache:
