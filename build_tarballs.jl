@@ -3,7 +3,7 @@
 using BinaryBuilder
 
 name = "x264Builder"
-version = v"2019.05.25-pre-noyasm"
+version = v"2019.05.25-noyasm"
 
 # Collection of sources required to build x264Builder
 sources = [
