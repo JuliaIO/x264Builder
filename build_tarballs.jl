@@ -15,6 +15,13 @@ sources = [
 # Bash recipe for building across all platforms
 script = raw"""
 cd $WORKSPACE/srcdir
+wget "http://www.nasm.us/pub/nasm/releasebuilds/2.14.02/nasm-2.14.02.tar.xz"
+tar xf nasm-2.14.02.tar.xz
+cd nasm-2.14.02
+./configure --prefix=$prefix --host=$target
+make
+make install
+cd ..
 cd x264-snapshot-20190525-2245-stable/
 ./configure --prefix=$prefix --host=$target --enable-shared --disable-cli
 make -j${nproc}
