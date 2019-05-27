@@ -3,7 +3,7 @@
 using BinaryBuilder
 
 name = "x264Builder"
-version = v"2019.05.25-noyasm"
+version = v"2019.05.25"
 
 # Collection of sources required to build x264Builder
 sources = [
@@ -16,10 +16,15 @@ sources = [
 script = raw"""
 cd $WORKSPACE/srcdir
 cd x264-snapshot-20190525-2245-stable/
-./configure --prefix=$prefix --host=$target --enable-shared --disable-cli --disable-asm
+if [[ "${target}" == x86_64* ]] || [[ "${target}" == i686* ]]; then
+    apk add nasm
+    export AS=nasm
+else
+    export AS="${CC}"
+fi
+./configure --prefix=$prefix --host=$target --enable-shared --disable-cli
 make -j${nproc}
 make install
-
 """
 
 # These are the platforms we will build for by default, unless further
@@ -39,6 +44,8 @@ platforms = [
     # musl
     Linux(:i686, :musl),
     Linux(:x86_64, :musl),
+    Linux(:aarch64, :musl),
+    Linux(:armv7l, :musl),
 
     # The BSD's
     FreeBSD(:x86_64),
