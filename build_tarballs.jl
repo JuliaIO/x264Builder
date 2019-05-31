@@ -22,46 +22,24 @@ if [[ "${target}" == x86_64* ]] || [[ "${target}" == i686* ]]; then
 else
     export AS="${CC}"
 fi
-./configure --prefix=$prefix --host=$target --enable-shared --disable-cli
+./configure --prefix=$prefix --host=$target --enable-static --enable-pic
 make -j${nproc}
 make install
 """
 
 # These are the platforms we will build for by default, unless further
 # platforms are passed in on the command line
-platforms = [
-    # Windows
-    Windows(:i686),
-    Windows(:x86_64),
-
-    # linux
-    Linux(:i686, :glibc),
-    Linux(:x86_64, :glibc),
-    Linux(:aarch64, :glibc),
-    Linux(:armv7l, :glibc),
-    Linux(:powerpc64le, :glibc),
-
-    # musl
-    Linux(:i686, :musl),
-    Linux(:x86_64, :musl),
-    Linux(:aarch64, :musl),
-    Linux(:armv7l, :musl),
-
-    # The BSD's
-    FreeBSD(:x86_64),
-    MacOS(:x86_64),
-]
+platforms = supported_platforms()
 
 # The products that we will ensure are always built
 products(prefix) = [
-    LibraryProduct(prefix, "libx264", :libx264)
+    ExecutableProduct(prefix, "x264", :x264)
 ]
 
 # Dependencies that must be installed before this package can be built
 dependencies = [
-    
+
 ]
 
 # Build the tarballs, and possibly a `build.jl` as well.
 build_tarballs(ARGS, name, version, sources, script, platforms, products, dependencies)
-
